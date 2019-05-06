@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { getUser, getSysInfo } from "../utils/util";
 export default {
     props: {
         type: {

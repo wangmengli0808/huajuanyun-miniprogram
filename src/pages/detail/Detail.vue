@@ -206,9 +206,9 @@ export default {
     },
     methods: {
         getData() {
-            // wx.showLoading({
-            //     title: "加载中"
-            // });
+            wx.showLoading({
+                title: "加载中"
+            });
 
             setTimeout(function() {
                 wx.hideLoading();

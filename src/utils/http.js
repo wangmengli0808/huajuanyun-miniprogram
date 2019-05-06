@@ -18,7 +18,7 @@ const Http = {
 		'UserIDEX': '/api/user/index', //个人信息
 		'INDEXDATA2': '/api/index/appcfg',
 		'FANSORDER': '/api/order/FansOrder', //粉丝订单
-		'FANS': '/api/agent/fans', //粉丝
+		'FANS': '/api/agent/newfans', //粉丝
 		'FANSLIST': '/api/agent/fansList', //粉丝lisit
 		'AGENTJOIN': '/api/agent/join', //代理升级接口
 		'AGENTJOINPAY':'/api/agent/join_pay', //代理升级支付接口
@@ -61,6 +61,7 @@ const Http = {
 		'ALIPAYACCOUNTBIND': '/api/user/WithdrawUpdate', //绑定支付宝账户
 		'USERCENTERCUSTOM':'/api/index/userCenterCustom',//个人中心三项装修
 		'SHAREPIC':'/api/wechat/SharePic',// 生成分享图片
+		'TEAMCENTER':'/api/team/teamcenter',// 生成分享图片
 	},
 	GET: (params) => {
 		return fly.get(params.url, qs.stringify(params.data))

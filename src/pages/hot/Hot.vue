@@ -39,16 +39,14 @@ export default {
     },
     data() {
         return {
-            navHeight: 0,
+            navHeight: 48,
             menuData: {},
             list: []
         };
     },
     mounted() {
         let that = this;
-        let windowHeight = wx.getStorageSync("systemInfo").windowHeight;
-        let screenHeight = wx.getStorageSync("systemInfo").screenHeight;
-        this.navHeight = screenHeight - windowHeight;
+        this.navHeight = wx.getStorageSync("navHeight");
         this.menuData = wx.getStorageSync("menuBounding");
 
         this.getList();

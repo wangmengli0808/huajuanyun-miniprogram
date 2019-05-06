@@ -1,6 +1,3 @@
-/**
- * Created by zhengyi.fu on 2018/8/31.
- */
 import Vue from 'vue'
 import Fly from 'flyio/dist/npm/wx'
 const fly = new Fly()
@@ -108,10 +105,9 @@ fly.interceptors.response.use(
         //只将请求结果的data字段返回
         if (ret.code === 401) {
             wx.removeStorageSync("token");
-            console.log('未登录')
             // if (currentUrl !== 'pages/user/main') {
                 // wx.navigateTo({
-                //     url: "/pages/userfiles/newlogin/main"
+                //     url: "/pages/userfiles/rule/main"
                 // })
             // }
         }

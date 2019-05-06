@@ -47,6 +47,16 @@
     ],
     "position": "bottom"
   },
+  "subPackages": [
+    {
+      "root": "pages/userfiles/",
+      "pages": [
+        "login/main",
+        "bindmobile/main",
+        "rule/main"
+      ]
+    }
+  ],
   "navigateToMiniProgramAppIdList": [
     "wxdf37c311bf304fca",
     "wx039a907c7ab5f45b",

@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { getUser } from "../utils/util";
 export default {
     props: {
         type: {
@@ -69,17 +68,14 @@ export default {
     },
     data() {
         return {
-            navHeight: 0,
+            navHeight: 48,
             menuData: {}
         };
     },
     mounted() {
-        let systemInfo = wx.getStorageSync("systemInfo");
-        let windowHeight = systemInfo.windowHeight;
-        let screenHeight = systemInfo.screenHeight;
+        this.navHeight = wx.getStorageSync("navHeight");
         // 获取菜单按钮（右上角胶囊按钮）的布局位置信息
         this.menuData = wx.getStorageSync("menuBounding");
-        this.navHeight = (screenHeight - windowHeight) > 0 ? (screenHeight - windowHeight) : 48;
     },
     methods: {
         onBack() {

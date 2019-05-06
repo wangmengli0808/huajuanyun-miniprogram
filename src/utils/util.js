@@ -19,16 +19,118 @@ import Http from './http'
 //     })
 // }
 
+// 获取个人信息
 export function getUser() {
     return new Promise((resolve, reject) => {
         Http.POST({
             url: Http.API_URL.UserIDEX,
         }).then((res) => {
-            resolve(res.data)
+            if (res.code == 1) {
+                resolve(res.data)
+            } else {
+                wx.showToast({
+                    title: res.msg,
+                    icon: "none",
+                    duration: 1000
+                })
+            }
         })
     })
 }
 
+
+// 获取小程序相关信息
+export function getApp() {
+    Http.POST({
+        url: Http.API_URL.MINIINFO,
+    }).then((res) => {
+        if (res.code == 1) {
+            wx.setStorage({
+                key: 'app',
+                data: res.data
+            })
+        } else {
+            wx.showToast({
+                title: res.msg,
+                icon: 'none',
+                duration: 2000
+            })
+        }
+    })
+}
+
+// 手机号绑定
+export function getBindMobile(code, info) {
+    let phpUserinfo = JSON.stringify(wx.getStorageSync("phpUserinfo"));
+    Http.POST({
+        url: Http.API_URL.WXBINGDMOBILE,
+        data: {
+            code: code,
+            userinfo: phpUserinfo,
+            encryptedData: info.encryptedData,
+            iv: info.iv
+        }
+    }).then((res) => {
+        if (res.code === 1) {
+            wx.setStorage({
+                key: "token",
+                data: res.data.userinfo,
+                success: function() {
+                    wx.setStorage({
+                        key: "isBindmobile",
+                        data: 1,
+                        success: function() {
+                            wx.showToast({
+                                title: "绑定成功",
+                                icon: "none",
+                                duration: 1000
+                            });
+                            setTimeout(function() {
+                                wx.navigateBack();
+                            }, 1000);
+                        }
+                    });
+                }
+            });
+        } else {
+            wx.showToast({
+                title: res.msg,
+                icon: 'none',
+                duration: 2000
+            })
+        }
+    })
+}
+
+// 获取京东信息
+export function getJdList(opt_id, page) {
+    return new Promise((resolve, reject) => {
+        Http.POST({
+            url: Http.API_URL.JdList,
+            data: {
+                sort_type: 0,
+                opt_id: opt_id,
+                page: page
+            }
+        }).then((res) => {
+            if (res.code === 1) {
+                resolve(res.data)
+            } else {
+                reject(res)
+            }
+        })
+    })
+}
+
+export function showSuccess(text) {
+    wx.showToast({
+        title: text,
+        icon: 'none',
+        duration: 2000
+    })
+}
+
+// 色值转rgba格式
 export function hexToRgba(hex, al) {
     var hexColor = /^#/.test(hex) ? hex.slice(1) : hex,
         alp = hex === "transparent" ? 0 : al,
@@ -51,11 +153,4 @@ export function hexToRgba(hex, al) {
         hex: "#" + hexColor,
         rgba: "rgba(" + r + ", " + g + ", " + b + ", " + alp + ")"
     };
-}
-
-export function showSuccess(text) {
-    wx.showToast({
-        title: text,
-        icon: 'success'
-    })
 }

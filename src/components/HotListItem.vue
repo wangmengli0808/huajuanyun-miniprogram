@@ -41,7 +41,7 @@ export default {
         return {};
     },
     mounted() {
-        console.log(this.list)
+
     },
     methods: {
         toDetail() {

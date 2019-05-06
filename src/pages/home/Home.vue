@@ -1,5 +1,6 @@
 <template>
     <div class="index" :style="'padding-top: ' + (isFixed ? navBoxTop : 0) + 'px'">
+        <!-- 背景色 -->
         <div
             class="bg-color"
             v-if="isShowBg"
@@ -27,6 +28,7 @@
                 </div>
             </div>
         </div>
+        <!-- banner轮播图 -->
         <div class="index-main">
             <div class="index-swiper">
                 <swiper
@@ -204,14 +206,13 @@
                 <list-item :list="allList" :classic="'second'"></list-item>
             </div>
         </div>
-
         <div class="free">
             <img class="free-img" src="http://image2.quanmama.com/AdminImageUpload/1345712xhb2_ORIGIN_4MzM.png" alt="">
         </div>
     </div>
 </template>
 <script>
-import { hexToRgba } from "../../utils/util";
+import { hexToRgba, getJdList } from "../../utils/util";
 import NavBar from "../../components/Navbar";
 import HorizontalScroll from "../../components/HorizontalScroll";
 import ListItem from "../../components/ListItem";
@@ -236,6 +237,8 @@ export default {
             mainHeight: 0,
             currentTab: 0,
             opacity: 0,
+            opt_id: 0,
+            page: 1,
             swiperList: [
                 {
                     focusColor: "#d9287c",
@@ -335,13 +338,10 @@ export default {
     },
     mounted() {
         let that = this;
-        let systemInfo = wx.getStorageSync("systemInfo");
-        let windowHeight = systemInfo.windowHeight;
-        let screenHeight = systemInfo.screenHeight;
-
+        let navHeight = wx.getStorageSync("navHeight");
         this.menuData = wx.getStorageSync("menuBounding");
-        this.bgColorHeight = this.menuData.top + (screenHeight - windowHeight);
-        this.navBoxTop = this.menuData.top + (screenHeight - windowHeight);
+        this.bgColorHeight = this.menuData.top + navHeight;
+        this.navBoxTop = this.menuData.top + navHeight;
 
         var query = wx.createSelectorQuery();
         query
@@ -367,22 +367,17 @@ export default {
         this.colorTo = hexToRgba(this.swiperList[1].focusColor, 0).rgba;
 
         this.getList();
+
+        getJdList(that.opt_id, that.page).then(function(res) {
+            console.log(res)
+        })
     },
     methods: {
         getList() {
             wx.showLoading({
                 title: "加载中"
             });
-            // Http.POST({
-            //     url: Http.API_URL.JdList,
-            //     data: {
-            //         sort_type: 0,
-            //         opt_id: "",
-            //         page: 1
-            //     }
-            // })
-            // .then(res => {})
-            // .catch(err => {});
+            
             let arr = [
                 {
                     title: "买一送一 科技师范吉林省福利费吉利丁粉讲课费",
