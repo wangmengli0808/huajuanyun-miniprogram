@@ -1,0 +1,5 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#ff512f",
+    "onReachBottomDistance": 100
+}

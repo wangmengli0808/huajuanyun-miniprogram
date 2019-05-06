@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/home/main",
+    "pages/hot/main",
+    "pages/discover/main",
+    "pages/me/main",
+    "pages/detail/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#333",
+    "backgroundColor": "#fff",
+    "selectedColor": "#f64f1a",
+    "borderStyle": "white",
+
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/main",
+        "iconPath": "static/img/icon-home.png",
+        "selectedIconPath": "static/img/icon-home-active.png"
+      },
+      {
+        "text": "热门",
+        "pagePath": "pages/hot/main",
+        "iconPath": "static/img/icon-hot.png",
+        "selectedIconPath": "static/img/icon-hot-active.png"
+      },
+      {
+        "text": "发现",
+        "pagePath": "pages/discover/main",
+        "iconPath": "static/img/icon-find.png",
+        "selectedIconPath": "static/img/icon-find-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/me/main",
+        "iconPath": "static/img/icon-mine.png",
+        "selectedIconPath": "static/img/icon-mine-active.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxdf37c311bf304fca",
+    "wx039a907c7ab5f45b",
+    "wx32540bd863b27570",
+    "wx13e41a437b8a1d2e"
+  ]
+}
