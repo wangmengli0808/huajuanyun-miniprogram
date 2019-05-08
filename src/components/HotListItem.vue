@@ -30,7 +30,7 @@
 <script>
 export default {
     props: {
-        type: {
+        from: {
             type: String
         },
         list: {
@@ -45,8 +45,9 @@ export default {
     },
     methods: {
         toDetail() {
+            let url = this.from === 'search' ? '../detail/main?id=1' : '../others/detail/main?id=1'
             wx.navigateTo({
-                url: '../detail/main?id=1'
+                url: url
             })
         }
     }

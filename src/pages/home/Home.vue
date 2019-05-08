@@ -228,7 +228,6 @@ export default {
             autoplay: true,
             isShowBg: true,
             isFixed: false,
-            isFirst: true,
             priceType: false,
             commissionType: false,
             navBoxTop: 0,
@@ -343,18 +342,16 @@ export default {
         this.bgColorHeight = this.menuData.top + navHeight;
         this.navBoxTop = this.menuData.top + navHeight;
 
-        var query = wx.createSelectorQuery();
-        query
+        wx.createSelectorQuery()
             .select(".index-tabs")
             .boundingClientRect(function(rect) {
-                if (rect && that.isFirst) {
-                    that.isFirst = false;
+                if (rect) {
                     that.navBoxTop += rect.height;
                     that.bgColorHeight += rect.height;
                 }
             })
             .exec();
-        query
+        wx.createSelectorQuery()
             .select(".index-swiper")
             .boundingClientRect(function(rect) {
                 if (rect) {

@@ -36,9 +36,17 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "详情",
-					"pathName": "pages/detail/main",
+					"pathName": "pages/others/detail/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/others/search/main",
+					"query": "",
 					"scene": null
 				}
 			]

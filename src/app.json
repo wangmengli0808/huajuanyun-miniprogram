@@ -3,8 +3,7 @@
     "pages/home/main",
     "pages/hot/main",
     "pages/discover/main",
-    "pages/me/main",
-    "pages/detail/main"
+    "pages/me/main"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -54,6 +53,13 @@
         "login/main",
         "bindmobile/main",
         "rule/main"
+      ]
+    },
+    {
+      "root": "pages/others/",
+      "pages": [
+        "detail/main",
+        "search/main"
       ]
     }
   ],

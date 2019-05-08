@@ -1,6 +1,6 @@
 <template>
     <div class="detail">
-        <nav-bar :navTitle="'商城'" :backShow="true" :type="navType"></nav-bar>
+        <nav-bar :navTitle="'商城'" :backShow="true" :type="'detail'" :opacity="opacity"></nav-bar>
 
         <div class="detail-swiper">
             <swiper class="swiper" :autoplay="true" circular interval="3000" duration="500">
@@ -99,8 +99,8 @@
 </template>
 
 <script>
-import NavBar from "../../components/Navbar";
-import ListItem from "../../components/DetailListItem";
+import NavBar from "../../../components/Navbar";
+import ListItem from "../../../components/DetailListItem";
 export default {
     components: {
         NavBar,
@@ -109,6 +109,7 @@ export default {
     data() {
         return {
             navType: "detail",
+            opacity: 0,
             swiperList: [
                 {
                     src:
@@ -216,14 +217,13 @@ export default {
         }
     },
     onPageScroll(e) {
-        this.navType = e.scrollTop > 100 ? "" : "detail";
+        this.opacity = e.scrollTop <= 200 ? (e.scrollTop / 200) : 1
     }
 };
 </script>
 
 <style lang="scss" scoped>
 .detail {
-    height: 2000rpx;
     .list-scroll {
         width: 100%;
         white-space: nowrap;

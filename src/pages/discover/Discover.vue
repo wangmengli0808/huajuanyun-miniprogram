@@ -2,12 +2,11 @@
     <div class="discover">
         <nav-bar :navTitle="'发现'" :backShow="false"></nav-bar>
         <div class="discover-tabs">
-            <div class="tabs" :style="'top: ' + (menuData.top + navHeight) + 'px'">
-                <div class="tab font26" :class="{active: type == 1}" @click="onChangeType(1)">晒单得奖</div>
-                <div class="tab font26" :class="{active: type == 2}" @click="onChangeType(2)">营销素材</div>
+            <div class="tabs bg-red" :style="'top: ' + (menuData.top + navHeight) + 'px'">
+                <div class="tab font30" :class="{active: type == 1}" @click="onChangeType(1)">晒单得奖</div>
+                <div class="tab font30" :class="{active: type == 2}" @click="onChangeType(2)">营销素材</div>
             </div>
         </div>
-        
         <div class="discover-list">
             <div class="item">
                 <div class="item-title">
@@ -50,7 +49,7 @@
                         <span>等14人觉得很赞</span>
                     </div>
                     <div class="praise-rt">
-                        <i class="fa fa-thumbs-o-up icon-zan"></i>
+                        <i class="fa fa-thumbs-up icon-zan text-red font26"></i>
                         <span>赞</span>
                     </div>
                 </div>
@@ -95,8 +94,8 @@
                         <img class="icon-avatar" src="https://images.unsplash.com/photo-1551446591-142875a901a1?w=640" alt="">
                         <span>等14人觉得很赞</span>
                     </div>
-                    <div class="praise-rt">
-                        <i class="fa fa-thumbs-o-up icon-zan"></i>
+                    <div class="praise-rt" @click="onPraise">
+                        <i class="fa fa-thumbs-o-up icon-zan font26"></i>
                         <span>赞</span>
                     </div>
                 </div>
@@ -138,6 +137,9 @@ export default {
         },
         onChangeType(type) {
             this.type = type
+        },
+        onPraise() {
+
         }
     }
 };
@@ -152,7 +154,6 @@ export default {
             justify-content: center;
             align-items: center;
             color: #fff;
-            background: linear-gradient(to right, #dd2476, #ff512f);
             padding: 0 0 16rpx;
             position: fixed;
             top: 0;

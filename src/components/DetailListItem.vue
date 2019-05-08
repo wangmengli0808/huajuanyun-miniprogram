@@ -38,7 +38,7 @@ export default {
     methods: {
         toDetail() {
             wx.navigateTo({
-                url: '../detail/main?id=1'
+                url: '../others/detail/main?id=1'
             })
         }
     }

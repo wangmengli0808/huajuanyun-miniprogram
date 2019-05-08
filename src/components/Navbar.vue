@@ -1,35 +1,18 @@
 <template>
-    <div :style="'height: ' +  (type === 'detail' ? 0 : (menuData.top + navHeight)) + 'px;'">
-        <div 
-            class="index-header fixed" 
-            v-if="type === 'detail'"
-            :style="'padding-top:' + menuData.top + 'px;'"
-        >
-            <div class="header" :style="'height: ' + navHeight + 'px;'">
-                <div class="header-box" style="align-items:center;" :style="'height: ' + menuData.height + 'px;'">
-                    <div class="detail-back font20" @click="onBack">
-                        <i class="fa fa-angle-left"></i>
-                        <span>返回</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="bg-red" :style="'height: ' +  (type === 'detail' ? 0 : (menuData.top + navHeight)) + 'px;'">
         <div
             class="index-header"
-            v-else
             :class="{fixed: type !== 'custom'}"
-            :style="'padding-top:' + menuData.top + 'px;background: ' + (hasColor ? 'transparent' : 'linear-gradient(to right, #dd2476, #ff512f)')"
+            :style="'padding-top:' + menuData.top + 'px;background: ' + (hasColor ? 'transparent' : 'linear-gradient(to right, rgba(221, 36, 118, ' + (type === 'detail' ? opacity : 1) + '), rgba(255, 81, 47, ' + (type === 'detail' ? opacity : 1) + '))')"
         >
             <div class="header" :style="'height: ' + navHeight + 'px;'">
-                <div class="header-box" :style="'height: ' + menuData.height + 'px;'">
+                <div class="header-box" :style="'height: ' + menuData.height + 'px;'" v-if="type === 'custom'">
                     <div
                         class="notice"
-                        v-if="type === 'custom'"
-                        :style="'width: ' + menuData.height + 'px'"
-                    >
+                        :style="'width: ' + menuData.height + 'px'">
                         <i class="fa fa-bell-o icon-bell"></i>
                     </div>
-                    <div class="search" v-if="type === 'custom'">
+                    <div class="search">
                         <div class="search-box">
                             <i class="fa fa-search"></i>
                             <input
@@ -37,12 +20,23 @@
                                 placeholder-style="color: #f7f7f7"
                                 class="search-input"
                                 placeholder="搜啥都有优惠券"
+                                disabled
+                                @click="toSearch"
                             >
                         </div>
                     </div>
-                    <div class="header-info" v-else>
-                        <i class="fa fa-angle-left icon-back" @click="onBack" v-if="backShow"></i>
-                        <span>{{navTitle}}</span>
+                </div>
+                <!-- 详情 -->
+                <div class="header-box" :style="'height: ' + menuData.height + 'px;'" v-else>
+                    <div class="header-info">
+                        <div class="detail-back font20" 
+                            :style="'background: rgba(0, 0, 0, ' + (type === 'detail' ? (opacity > 0.8 ? 1-opacity : 0.2) : 0) + ')'" 
+                            @click="onBack" 
+                            v-if="backShow">
+                            <i class="fa fa-angle-left"></i>
+                            <span v-if="type === 'detail'" :style="'opacity: ' + (1 - opacity)">返回</span>
+                        </div>
+                        <span class="font36" :style="'opacity: ' + opacity">{{navTitle}}</span>
                     </div>
                 </div>
             </div>
@@ -59,6 +53,9 @@ export default {
         navTitle: {
             type: String
         },
+        opacity: {
+            type: Number
+        },
         backShow: {
             type: Boolean
         },
@@ -69,7 +66,10 @@ export default {
     data() {
         return {
             navHeight: 48,
-            menuData: {}
+            menuData: {
+                top: 26,
+                height: 32
+            }
         };
     },
     mounted() {
@@ -80,6 +80,11 @@ export default {
     methods: {
         onBack() {
             wx.navigateBack();
+        },
+        toSearch() {
+            wx.navigateTo({
+                url: '../others/search/main'
+            })
         }
     }
 };
@@ -100,12 +105,19 @@ export default {
             height: 50rpx;
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, .2);
             border-radius: 30rpx;
             padding: 0 30rpx 0 20rpx;
+
+            position: absolute;
+            top: 50%;
+            left: 0;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
             .fa {
                 font-size: 44rpx;
                 margin-right: 20rpx;
+                position: relative;
+                top: -2rpx;
             }
         }
         .header {

@@ -62,22 +62,22 @@ module.exports = merge(baseWebpackConfig, {
           module.resource.indexOf('node_modules') >= 0
         ) || count > 1
       }
-	}),
-	//新增打包文件
-	new webpack.optimize.CommonsChunkPlugin({
-		name: 'webim', //新打包文件名
-		chunks: ['vendor'], //拆分模块名
-		minChunks: function (module, count) {
-			console.log(module.resource + count)
-			// 以下是拆分规则，返回true 则拆分，以下规则是将 libs 下的文件单独打包
-			return (
-			module.resource &&
-			/\.js$/.test(module.resource) &&
-			module.resource.indexOf('libs') >= 0 &&
-			module.resource.indexOf('node_modules') === -1
-			)
-		}
-	}),
+    }),
+    //新增打包文件
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'webim', //新打包文件名
+      chunks: ['vendor'], //拆分模块名
+      minChunks: function (module, count) {
+        console.log(module.resource + count)
+        // 以下是拆分规则，返回true 则拆分，以下规则是将 libs 下的文件单独打包
+        return (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf('libs') >= 0 &&
+          module.resource.indexOf('node_modules') === -1
+        )
+      }
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['webim']

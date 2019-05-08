@@ -1,54 +1,20 @@
-page {
-    min-height: 100%;
-    background: #f2f2f2;
-}
-.container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-.font20 {
-    font-size: 20rpx;
-}
-.font22 {
-    font-size: 22rpx;
-}
-.font24 {
-    font-size: 24rpx;
-}
-.font26 {
-    font-size: 26rpx;
-}
-.font28 {
-    font-size: 28rpx;
-}
-.font30 {
-    font-size: 30rpx;
-}
-.font32 {
-    font-size: 32rpx;
-}
-.text-red {
-    color: #f00;
-}
-.text-gray666 {
-    color: #666;
-}
-.text-gray999 {
-    color: #999;
-}
-.text-center {
-    text-align: center;
-}
-.text-left {
-    text-align: left;
-}
-.text-right {
-    text-align: right;
-}
+page {min-height: 100%;background: #f2f2f2;}
+.container {height: 100%;display: flex;flex-direction: column;align-items: center;justify-content: space-between;box-sizing: border-box;}
+.font20 {font-size: 20rpx;}
+.font22 {font-size: 22rpx;}
+.font24 {font-size: 24rpx;}
+.font26 {font-size: 26rpx;}
+.font28 {font-size: 28rpx;}
+.font30 {font-size: 30rpx;}
+.font32 {font-size: 32rpx;}
+.font34 {font-size: 34rpx;}
+.font36 {font-size: 36rpx;}
+.text-red {color: #f00;}
+.text-gray666 {color: #666;}
+.text-gray999 {color: #999;}
+.text-center {text-align: center;}
+.text-left {text-align: left;}
+.text-right {text-align: right;}
 .text-ellipsis {
     text-overflow: -o-ellipsis-lastline;
     text-overflow: ellipsis;
@@ -58,22 +24,10 @@ page {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-.text-del {
-    text-decoration: line-through;
-}
-.bg-red {
-    background: linear-gradient(to right, #dd2476, #ff512f);
-}
-.bg-gray {
-    background: #f2f2f2;
-}
-.img-info {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
+.text-del {text-decoration: line-through;}
+.bg-red {background: linear-gradient(to right, #dd2476, #ff512f);}
+.bg-gray {background: #f2f2f2;}
+.img-info {width: 100%;height: 100%;object-fit: cover;}
 /* 公共模块样式 */
 .index-classify {
     display: flex;
@@ -95,7 +49,6 @@ page {
 .index-classify .title {
     margin-top: 5rpx;
 }
-
 .index-title {
     display: flex;
     justify-content: space-between;
@@ -111,7 +64,6 @@ page {
     font-size: 32rpx;
     margin-right: 20rpx;
 }
-
 .coupon-two {
     display: flex;
     justify-content: space-between;
