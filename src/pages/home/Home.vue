@@ -20,7 +20,7 @@
             <!-- tab切换 -->
             <div class="index-tabs">
                 <div style="width: 80%;">
-                    <horizontal-scroll type="custom" @onTabClick="onTabClick"></horizontal-scroll>
+                    <horizontal-scroll type="custom" @onTabClick="onTabClick" :data="scrollTypes"></horizontal-scroll>
                 </div>
                 <div class="tab-all text-right">
                     <span class="span">全部</span>
@@ -28,8 +28,8 @@
                 </div>
             </div>
         </div>
-        <!-- banner轮播图 -->
         <div class="index-main">
+            <!-- banner轮播图 -->
             <div class="index-swiper">
                 <swiper
                     class="swiper"
@@ -212,7 +212,7 @@
     </div>
 </template>
 <script>
-import { hexToRgba, getJdList } from "../../utils/util";
+import { getApp, bindmobile, hexToRgba, getJdList } from "../../utils/util";
 import NavBar from "../../components/Navbar";
 import HorizontalScroll from "../../components/HorizontalScroll";
 import ListItem from "../../components/ListItem";
@@ -236,8 +236,74 @@ export default {
             mainHeight: 0,
             currentTab: 0,
             opacity: 0,
-            opt_id: 0,
+            opt_id: null,
             page: 1,
+            scrollTypes: [
+                {
+                    "opt_id": null,
+                    "opt_name": "精选"
+                },
+                {
+                    "opt_id": 1,
+                    "opt_name": "女装"
+                },
+                {
+                    "opt_id": 10,
+                    "opt_name": "男装"
+                },
+                {
+                    "opt_id": 2,
+                    "opt_name": "鞋品"
+                },
+                {
+                    "opt_id": 7,
+                    "opt_name": "箱包"
+                },
+                {
+                    "opt_id": 85,
+                    "opt_name": "美食"
+                },
+                {
+                    "opt_id": 3,
+                    "opt_name": "美妆"
+                },
+                {
+                    "opt_id": 107,
+                    "opt_name": "母婴儿童"
+                },
+                {
+                    "opt_id": 8,
+                    "opt_name": "数码家电"
+                },
+                {
+                    "opt_id": 9,
+                    "opt_name": "居家日用"
+                },
+                {
+                    "opt_id": 4,
+                    "opt_name": "珠宝配饰"
+                },
+                {
+                    "opt_id": 6,
+                    "opt_name": "文体车品"
+                },
+                {
+                    "opt_id": 120,
+                    "opt_name": "服饰内衣"
+                },
+                {
+                    "opt_id": 121,
+                    "opt_name": "家装家纺"
+                },
+                {
+                    "opt_id": 122,
+                    "opt_name": "户外运动"
+                },
+                {
+                    "opt_id": 123,
+                    "opt_name": "其他"
+                }
+            ],
             swiperList: [
                 {
                     focusColor: "#d9287c",
@@ -365,9 +431,8 @@ export default {
 
         this.getList();
 
-        getJdList(that.opt_id, that.page).then(function(res) {
-            console.log(res)
-        })
+        // 获取小程序相关信息
+        getApp();
     },
     methods: {
         getList() {
@@ -419,6 +484,10 @@ export default {
             ];
             this.allList = [...this.allList, ...arr];
 
+            // getJdList(this.opt_id, this.page).then(function(res) {
+            //     console.log(res)
+            // });
+
             setTimeout(function() {
                 wx.hideLoading();
             }, 1000);
@@ -462,8 +531,8 @@ export default {
         scrolltolower(e) {
             console.log(e);
         },
-        onTabClick(type) {
-            console.log(type)
+        onTabClick(id) {
+            this.opt_id = id
         },
         onTypeClick(type) {
             this.typeFrom = type;
@@ -481,6 +550,10 @@ export default {
                 this.commissionType = false;
             }
         }
+    },
+    onShow() {
+        // 手机号绑定
+        bindmobile();
     },
     onPullDownRefresh() {
         console.log("refresh------");
@@ -732,7 +805,6 @@ export default {
             display: flex;
             align-items: center;
             background: #fff;
-            margin-top: 20rpx;
             margin-bottom: 30rpx;
         }
         .tab {

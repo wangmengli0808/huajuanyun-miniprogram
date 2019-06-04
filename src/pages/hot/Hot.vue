@@ -3,7 +3,7 @@
         <nav-bar :navTitle="'热门'" :backShow="false"></nav-bar>
         <div class="hot-tabs">
             <div class="hot-scroll" :style="'top: ' + (menuData.top + navHeight) + 'px'">
-                <horizontal-scroll></horizontal-scroll>
+                <horizontal-scroll @onTabClick="onTabClick" :data="scrollTypes"></horizontal-scroll>
             </div>
         </div>
         <div class="hot-banner">
@@ -41,7 +41,33 @@ export default {
         return {
             navHeight: 48,
             menuData: {},
-            list: []
+            list: [],
+            scrollTypes: [
+                {
+                    "opt_id": 1,
+                    "opt_name": "女装"
+                },
+                {
+                    "opt_id": 10,
+                    "opt_name": "男装"
+                },
+                {
+                    "opt_id": 2,
+                    "opt_name": "鞋品"
+                },
+                {
+                    "opt_id": 107,
+                    "opt_name": "母婴儿童"
+                },
+                {
+                    "opt_id": 8,
+                    "opt_name": "数码家电"
+                },
+                {
+                    "opt_id": 9,
+                    "opt_name": "居家日用"
+                }
+            ],
         };
     },
     mounted() {
@@ -103,7 +129,10 @@ export default {
             setTimeout(function() {
                 wx.hideLoading();
             }, 1000);
-        }
+        },
+        onTabClick(id) {
+            console.log(id)
+        },
     },
     onReachBottom() {
         this.getList();
@@ -144,6 +173,7 @@ export default {
     }
     &-scroll {
         background: linear-gradient(to right, #dd2476, #ff512f);
+        padding: 0 20rpx;
         position: fixed;
         top: 0;
         left: 0;

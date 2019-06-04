@@ -30,11 +30,8 @@
 </template>
 
 <script>
-// import NavBar from "src/components/Navbar";
+import { getUserInfo } from "../../../utils/util";
 export default {
-    components: {
-        // NavBar
-    },
     data() {
         return {
             appcfg: {
@@ -48,8 +45,10 @@ export default {
         closeDialog() {
 
         },
-        onGetUserInfo() {
-
+        onGetUserInfo(e) {
+            if (e.mp.detail.userInfo) {
+                getUserInfo();
+            }
         }
     }
 };

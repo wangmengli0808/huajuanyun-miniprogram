@@ -202,8 +202,21 @@ export default {
             ],
         };
     },
-    mounted() {
+    onLoad(options) {
+        if (options && options.inviteCode) {
+            // this.inviteCode = options.inviteCode;
+            wx.setStorageSync('invite_code', options.inviteCode)
+		}
         this.getData();
+    },
+    
+    onShow() {
+        const apptoken = wx.getStorageSync("token").token;
+        if (!apptoken) {
+            wx.hideShareMenu({});
+        } else {
+            wx.showShareMenu({});
+        }
     },
     methods: {
         getData() {

@@ -106,16 +106,20 @@ fly.interceptors.response.use(
         if (ret.code === 401) {
             wx.removeStorageSync("token");
             // if (currentUrl !== 'pages/user/main') {
-                // wx.navigateTo({
-                //     url: "/pages/userfiles/rule/main"
-                // })
+                wx.navigateTo({
+                    url: "/pages/userfiles/login/main"
+                })
             // }
         }
         return response.data;
     },
     (err) => {
         //发生网络错误后会走到这里
-        //return Promise.resolve("ssss")
+        // return Promise.resolve("ssss")
+        // wx.showToast({
+        //     title:'网络不流畅，请稍后再试！',
+        //     icon:'none',
+        // });
     }
 )
 

@@ -18,7 +18,7 @@
                     </div>
                     <div class="box1-txt" @click="onConfirm">搜索</div>
                 </div>
-                <div class="box2">
+                <div class="box2 font30">
                     <div class="cate active">
                         <span class="cate-txt">拼多多</span>
                     </div>
@@ -34,21 +34,21 @@
         <div class="search-content" v-if="!isShow">
             <div class="content">
                 <div class="content-title">
-                    <div class="font30">历史记录</div>
+                    <div class="font32">历史记录</div>
                     <div class="trash-box text-gray666">
-                        <i class="fa fa-trash-o icon-trash font28"></i>
-                        <span class="font20" @click="clearHistory">清空历史记录</span>
+                        <i class="fa fa-trash-o icon-trash font32"></i>
+                        <span class="font24" @click="clearHistory">清空历史记录</span>
                     </div>
                 </div>
-                <div class="content-item font24">
+                <div class="content-item font26">
                     <div class="item" v-for="item in historyData" :key="item" @click="onClickItem(item)">{{item}}</div>
                 </div>
             </div>
             <div class="content">
                 <div class="content-title">
-                    <div class="font30">热门推荐</div>
+                    <div class="font32">热门推荐</div>
                 </div>
-                <div class="content-item font24">
+                <div class="content-item font26">
                     <div class="item active">智能导购</div>
                     <div class="item" v-for="item in hotData" :key="item" @click="onClickItem(item)">{{item}}</div>
                 </div>
@@ -172,8 +172,10 @@ export default {
             ]
         }
     },
-    mounted: function() {
-        this.searchHeight = 0
+    onLoad(options) {
+        console.log(options)
+        this.keyword = '';
+        this.searchHeight = 0;
         this.fixedTop = this.fixedTypeTop = wx.getStorageSync("navHeight") + wx.getStorageSync("menuBounding").top;
         wx.createSelectorQuery()
             .select(".search-box")
@@ -236,7 +238,6 @@ export default {
         this.historyData = wx.getStorageSync('history_arr') ? wx.getStorageSync('history_arr') : []
     },
     watch: {
-        
         keyword(curVal, oldVal) {
             let timer, that = this
             // 判断input输入间隔  减少请求次数
@@ -314,7 +315,7 @@ export default {
     &-content {
         padding: 20rpx 30rpx;
         .content {
-            margin-bottom: 30rpx;
+            margin-bottom: 40rpx;
             &-title {
                 display: flex;
                 justify-content: space-between;

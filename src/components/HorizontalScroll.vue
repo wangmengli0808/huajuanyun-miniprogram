@@ -1,32 +1,11 @@
 <template>
     <div class="scroll">
         <scroll-view class="scroll-view" scroll-x>
-            <view class="tab-item" @click="onTabClick('11')">
-                <span class="txt">精选</span>
-            </view>
-            <view class="tab-item active">
-                <span class="txt">美食</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">美食</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">精选</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">美食</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">美食</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">精选</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">美食</span>
-            </view>
-            <view class="tab-item">
-                <span class="txt">美食</span>
+            <view class="tab-item"
+                :class="{active: category === item.opt_name}"
+                v-for="item in data" :key="item.opt_id"
+                @click="onTabClick(item)">
+                <span class="txt">{{item.opt_name}}</span>
             </view>
         </scroll-view>
     </div>
@@ -44,6 +23,9 @@ export default {
         backShow: {
             type: Boolean
         },
+        data: {
+            type: Array
+        },
         onTabClick: {
             type: Function,
             default: function() {}
@@ -51,15 +33,16 @@ export default {
     },
     data() {
         return {
-            
+            category: this.data[0].opt_name
         };
     },
     mounted() {
         
     },
     methods: {
-        onTabClick(type) {
-            this.$emit('onTabClick', type);
+        onTabClick(item) {
+            this.category = item.opt_name;
+            this.$emit('onTabClick', item.opt_id);
         }
     }
 };
@@ -75,6 +58,11 @@ export default {
         height: 60rpx;
         line-height: 60rpx;
         white-space: nowrap;
+        &::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+            color: transparent;
+        }
         .tab-item {
             display: inline-block;
             padding-right: 10rpx;
